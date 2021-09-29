@@ -1,0 +1,256 @@
+<html>
+<head>
+  <title>Net Clock</title>
+  <link rel="shortcut icon" href="/qqest/images/favicon.ico">
+  <link rel=stylesheet type=text/css href="NetClock.css">
+  <style>
+  </style>
+<script language=javascript src="NetClock.js">
+  document.getElementById("tdTipItem").background = "images/Tabs_Light_Dark_Tip.jpg";
+</script>
+</head>
+<body topmargin=0 leftmargin=0 onkeydown="return chkKey();" onload="chkUser(0,'');">
+  <table id=tblMain cellpadding=0 cellspacing=0 border=0 width=100% height=100% bgcolor=#d7e7f7>
+    <tr id=trMain>
+      <td id=tdLeft width=566 valign=top>
+        <table id=tblPunchDetail cellpadding=0 cellspacing=0 border=0 width=100%>
+          <tr id=trEmployeeImage bgcolor=#d7e7f7>
+            <td id=tdEmployeeImage height=50% align=center rowspan=3>
+              <img id=imgEmployeeImage src=/qqest/images/spacer.gif height=75 />
+            </td>
+          </tr>
+          <tr class=bgcolorRow1>
+            <td id=tdDisplayDate>
+              &nbsp;
+              <span id=spnDisplayDate class=DateText></span>
+              <input type=hidden id=punchDate />
+            </td>
+          </tr>
+          <tr class=bgcolorRow1>
+            <td id=tdDisplayTime>
+              &nbsp;
+              <span id=spnDisplayTime class=TimeText></span>
+              <input type=hidden id=punchTime />
+            </td>
+          </tr>
+          <tr id=trEmployeeName class=bgcolorRow2>
+            <td id=tdEmployeeNameText class=NameText>
+              <span id=spnEmployeeNameText>Name:</span>
+            </td>
+            <td id=tdEmployeeName class=NameValue>
+              &nbsp;<span id=spnEmployeeName></span>
+            </td>
+          </tr>
+        </table>
+        <table id=tblOptions cellpadding=0 cellspacing=0 border=0 width=100%>
+          <tr id=trCardNumber class=FuctionRow onclick="chkState(1);" onfocus="chkState(1);" tabindex=1>
+            <td id=tdCardNumberText class=FunctionText>
+              <span id=spnCardNumberText >Card Number:</span>
+            </td>
+            <td id=tdCardNumber class=FunctionValue>
+              &nbsp;<span id=spnCardNumber></span>
+            </td>
+          </tr>
+          <tr id=trEmployeePin height=20 class=FuctionRow onclick="chkState(0);" onfocus="chkState(0);">
+            <td id=tdEmployeePinText align=right class=FunctionText>
+              Employee Pin:
+            </td>
+            <td id=tdEmployeePin class=FunctionValue>
+              &nbsp;<span id=spnEmployeePin></span><input type=hidden id=employeePin />
+            </td>
+          </tr>
+          <tr id=trInOut height=20 class=bgcolorRow1>
+            <td id=tdInOutText align=right class=OptionFormat>
+              In<input type=radio name=inOut id=inOut1 tabindex=2 />
+            </td>
+            <td id=tdInOut class=OptionFormat>
+              Out<input type=radio name=inOut id=inOut2 tabindex=2 />
+            </td>
+          </tr>
+          <tr id=trLunchBreak height=20 class=bgcolorRow1>
+            <td id=tdLunchBreakText align=right class=OptionFormat>
+              Lunch<input type=radio name=lunchBreak id=lunchBreak1 tabindex=3 />
+            </td>
+            <td id=tdLunchBreak class=OptionFormat>
+              Break<input type=radio name=lunchBreak id=lunchBreak2 tabindex=3 />&nbsp;Normal<input type=radio name=lunchBreak id=lunchBreak3 tabindex=3 />
+            </td>
+          </tr>
+          <tr id=trFunction height=50 class=bgcolorRow1>
+            <td id=tdFunctionOptions colspan=2>
+              <table id=tblFunctionOptions width=100% height=100%>
+                <tr id=trFunctionOptions>
+                  <td id=tdTipItem class=FunctionOption onclick="chkState(2);" onfocus="chkState(2);" background="images/Tabs_Light_Blue_Tip.jpg">
+                    <!--<span id=spnTipItem>Tip</span>-->
+                  </td>
+                  <td id=tdDepartmentItem class=FunctionOption onclick=chkState(6); onfocus="chkState(6);" background="images/Tabs_Light_Blue_Dept.jpg">
+                    <!--<span id=spnDepartmentItem>Dept</span>-->
+                  </td>
+                  <td id=tdJobItem class=FunctionOption onclick=chkState(3); onfocus="chkState(3);" background="images/Tabs_Light_Blue_Job.jpg" style="display:none">
+                    <!--<span id=spnJobItem>Job</span>-->
+                  </td>
+                  <td id=tdSpacer class=FunctionSpacer>
+                    &nbsp;
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr id=trFunctionDispaly height=271 class=bgcolorRow1 valign=top>
+            <td id=tdFunctionDisplay colspan=3>
+              <table id=tblTip style="display:none;" cellpadding=0 cellspacing=1 border=0 width=100%>
+                <tr id=trTipSpacer class=bgcolorRow2>
+                  <td id=tdTipSpacer1 class=NameText>
+                    &nbsp;
+                  </td>
+                  <td id=tdTipSpacer2 class=NameValue>
+                    &nbsp;
+                  </td>
+                </tr>
+                <tr id=trTipAmount class=FuctionRow onclick="chkState(2);" onfocus="chkState(2);" tabindex=4>
+                  <td id=tdTipAmountText class=FunctionText>
+                    <span id=spnTipAmountText style="font-size:20;">Tip Amount:</span>
+                  </td>
+                  <td id=tdTipAmount class=FunctionValue>
+                    <span id=spnSymbel>&nbsp;$&nbsp;</span>&nbsp;<span id=spnTipAmount></span>
+                  </td>
+                </tr>
+              </table>
+              <table id=tblJob style="display:none;" cellpadding=0 cellspacing=1 border=0 width=100%>
+                <tr id=trJobName class=bgcolorRow2>
+                  <td id=tdJobNameText class=NameText>
+                    <span id=spnJobNameText>Job Name:</span>
+                  </td>
+                  <td id=tdJobName class=NameValue>
+                    &nbsp;<span id=spnJobName></span>
+                  </td>
+                </tr>
+                <tr id=trJobNumber class=FuctionRow onclick=chkState(3); onfocus="chkState(3);" tabindex=4>
+                  <td id=tdJobNumberText class=FunctionText>
+                    <span id=spnJobNumberText>Job Number:</span>
+                  </td>
+                  <td id=tdJobNumber class=FunctionValue>
+                    &nbsp;<span id=spnJobNumber></span>
+                  </td>
+                </tr>
+                <tr id=trJobTransfer class=TransferOptionRow>
+                  <td id=tdJobTransfer class=TransferOptionText>
+                    <span id=spnJobTransferText>Job Transfer:</span>
+                  </td>
+                  <td id=tdJobTransferChk>
+                    &nbsp;<input type=checkbox id=chkJobTransfer onclick=chkTransfer(this) disabled tabindex=5 />
+                  </td>
+                </tr>
+                <tr id=trTaskName class=bgcolorRow2>
+                  <td id=tdTaskNameText class=NameText>
+                    <span id=spnTaskNameText>Task Name:</span>
+                  </td>
+                  <td id=tdTaskName class=NameValue>
+                    &nbsp;<span id=spnTaskName></span>
+                  </td>
+                </tr>
+                <tr id=trTaskNumber class=FuctionRow onclick=chkState(4); onfocus="chkState(4);" tabindex=6>
+                  <td id=tdTaskNumberText class=FunctionText>
+                    <span id=spnTaskNumberText>Task Number:</span>
+                  </td>
+                  <td id=tdTaskNumber class=FunctionValue>
+                    &nbsp;<span id=spnTaskNumber></span>
+                  </td>
+                </tr>
+                <tr id=trQtyAmount class=FuctionRow onclick=chkState(5); onfocus="chkState(5);" tabindex=7>
+                  <td id=tdQtyAmountText class=FunctionText>
+                    <span id=spnQtyAmountText>Qty:</span>
+                  </td>
+                  <td id=tdQtyAmount class=FunctionValue>
+                    &nbsp;<span id=spnQtyAmount></span>
+                  </td>
+                </tr>
+              </table>
+              <table id=tblDepartment style="display:none;" cellpadding=0 cellspacing=1 border=0 width=100%>
+                <tr id=trDepartmentName class=bgcolorRow2>
+                  <td id=tdDepartmentNameText class=NameText>
+                    <span id=spnDepartmentNameText>Dept Name:</span>
+                  </td>
+                  <td id=tdDepartmentName class=NameValue>
+                    &nbsp;<span id=spnDepartmentName></span>
+                  </td>
+                </tr>
+                <tr id=trDepartmentNumber class=FuctionRow onclick=chkState(6); onfocus="chkState(6);" tabindex=4>
+                  <td id=tdDepartmentNumberText class=FunctionText>
+                    <span id=spnDepartmentNumberText>Dept Number:</span>
+                  </td>
+                  <td id=tdDepartmentNumber class=FunctionValue>
+                    &nbsp;<span id=spnDepartmentNumber></span>
+                  </td>
+                </tr>
+                <tr id=trDepartmentOverride class=TransferOptionRow>
+                  <td id=tdDepartmentOverride class=TransferOptionText>
+                    <span id=spnDepartmentTOverrideText >Dept Override:</span>
+                  </td>
+                  <td id=tdDepartmentOverrideChk>
+                    &nbsp;<input type=checkbox id=chkDepartmentOverride disabled />
+                  </td>
+                </tr>
+                <tr id=trDepartmentTransfer class=TransferOptionRow>
+                  <td id=tdDepartmentTransfer class=TransferOptionText>
+                    <span id=spnDepartmentTransferText >Dept Transfer:</span>
+                  </td>
+                  <td id=tdDepartmentTransferChk>
+                    &nbsp;<input type=checkbox id=chkDepartmentTransfer onclick=chkTransfer(this) disabled tabindex=5 />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td id=tdrightt width=305>
+        <table id=Table1 cellpadding=0 cellspacing=0 border=0>
+          <tr>
+            <td class=KeyPad id=td1 ondblclick="keyPadClick('1');" onclick="keyPadClick('1');" width=101 height=101 background="images/Clock-Interface_03.jpg">
+            </td>
+            <td class=KeyPad id=td2 ondblclick="keyPadClick('2');" onclick="keyPadClick('2');" width=101 height=101 background="images/Clock-Interface_04.jpg">
+            </td>
+            <td class=KeyPad id=td3 ondblclick="keyPadClick('3');" onclick="keyPadClick('3');" width=101 height=101 background="images/Clock-Interface_05.jpg">
+            </td>
+          </tr>
+          <tr>
+            <td class=KeyPad id=td4 ondblclick="keyPadClick('4');" onclick="keyPadClick('4');" width=101 height=99 background="images/Clock-Interface_07.jpg">
+            </td>
+            <td class=KeyPad id=td5 ondblclick="keyPadClick('5');" onclick="keyPadClick('5');" width=101 height=99 background="images/Clock-Interface_08.jpg">
+            </td>
+            <td class=KeyPad id=td6 ondblclick="keyPadClick('6');" onclick="keyPadClick('6');" width=101 height=99 background="images/Clock-Interface_09.jpg">
+            </td>
+          </tr>
+          <tr>
+            <td class=KeyPad id=td7 ondblclick="keyPadClick('7');" onclick="keyPadClick('7');" width=101 height=101 background="images/Clock-Interface_10.jpg">
+            </td>
+            <td class=KeyPad id=td8 ondblclick="keyPadClick('8');" onclick="keyPadClick('8');" width=101 height=101 background="images/Clock-Interface_11.jpg">
+            </td>
+            <td class=KeyPad id=td9 ondblclick="keyPadClick('9');" onclick="keyPadClick('9');" width=101 height=101 background="images/Clock-Interface_12.jpg">
+            </td>
+          </tr>
+          <tr>
+            <td class=KeyPad id=tdClear ondblclick="keyPadClick('Clear');" onclick="keyPadClick('Clear');" width=101 height=101 background="images/Clock-Interface_13.jpg">
+            </td>
+            <td class=KeyPad id=td0 ondblclick="keyPadClick('0');" onclick="keyPadClick('0');" width=101 height=101 background="images/Clock-Interface_14.jpg">
+            </td>
+            <td class=KeyPad id=tdDecimal ondblclick="keyPadClick('.');" onclick="keyPadClick('.');" width=101 height=101 background="images/Clock-Interface_15.jpg">
+            </td>
+          </tr>
+          <tr>
+            <td class=KeyPad id=tdRxit ondblclick="document.location.href='/qqest/login/login.asp'" onclick="document.location.href='/qqest/login/login.asp'" width=101 height=103 background="images/Clock-Interface_16.jpg">
+            </td>
+            <td class=KeyPad id=tdEnter1 ondblclick="keyPadClick('Enter');" onclick="keyPadClick('Enter');" width=101 height=103 background="images/Clock-Interface_17.jpg">
+            </td>
+            <td class=KeyPad id=tdEnter2 ondblclick="keyPadClick('Enter');" onclick="keyPadClick('Enter');" width=101 height=103 background="images/Clock-Interface_18.jpg">
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <script language="javascript">
+    changePageState(1);
+  </script>
+</body>
+</html>
